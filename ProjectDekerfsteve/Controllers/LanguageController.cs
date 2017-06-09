@@ -10,11 +10,6 @@ namespace ProjectDekerfsteve.Controllers
 {
     public class LanguageController : Controller
     {
-        // GET: Language
-        public ActionResult Index()
-        {
-            return View();
-        }
         public ActionResult Change(String LanguageAbbrevation)
         {
             if (LanguageAbbrevation != null)

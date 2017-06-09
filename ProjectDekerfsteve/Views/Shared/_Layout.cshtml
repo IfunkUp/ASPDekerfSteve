@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -22,7 +23,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
-                    <li>@Html.ActionLink(Teksten.Contact, "Contact", "Home")</li>
+                    <li>@Html.ActionLink(Teksten.Contact, "Create", "Vraag")</li>
                     @Html.ActionLink("Francais", "Change", "Language", new { LanguageAbbrevation = "fr" }, new { @class = "navbar-brand" })
                     @Html.ActionLink("Nederlands", "Change", "Language", new { LanguageAbbrevation = "nl" }, new { @class = "navbar-brand" })
                 </ul>
