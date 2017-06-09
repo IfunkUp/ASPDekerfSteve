@@ -12,7 +12,6 @@ namespace ProjectDekerfsteve.Controllers
         {
             return View();
         }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -24,6 +23,10 @@ namespace ProjectDekerfsteve.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        public ActionResult Welkom()
+        {
             return View();
         }
     }
