@@ -205,6 +205,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706121721275_steve.cs" />
+    <Compile Include="Migrations\201706121721275_steve.Designer.cs">
+      <DependentUpon>201706121721275_steve.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706121807279_steve2.cs" />
+    <Compile Include="Migrations\201706121807279_steve2.Designer.cs">
+      <DependentUpon>201706121807279_steve2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -291,6 +300,7 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\datepicker.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -345,6 +355,7 @@
     <Content Include="Views\evenement\Details.cshtml" />
     <Content Include="Views\evenement\Edit.cshtml" />
     <Content Include="Views\evenement\Index.cshtml" />
+    <Content Include="Views\Account\Extra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -365,6 +376,12 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706121721275_steve.resx">
+      <DependentUpon>201706121721275_steve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706121807279_steve2.resx">
+      <DependentUpon>201706121807279_steve2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Teksten.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Teksten.fr.Designer.cs</LastGenOutput>

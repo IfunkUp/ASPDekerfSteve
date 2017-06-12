@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.Migrations;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ProjectDekerfsteve.Models;
@@ -51,6 +53,40 @@ namespace ProjectDekerfsteve.Controllers
                 _userManager = value;
             }
         }
+
+        public ActionResult Extra()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Extra(ExtraInformationViewModel model)
+        {
+            INFO_c1035462Entities db = new INFO_c1035462Entities();
+            ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
+            user.Name = model.Name;
+            user.SurName = model.Surname;
+            user.Birthdate = model.Birthdate;
+            user.City = model.City;
+            user.Zipcode = model.Zipcode;
+
+            if (db.Proj_gemeenten.Where(x =>x.postcode == user.Zipcode).Count() == 0 )
+            {
+                var x = new Gemeente();
+                x.postcode = user.Zipcode;
+                x.naam = user.City;
+                db.Proj_gemeenten.AddOrUpdate(x);
+                db.SaveChanges();
+
+
+            }
+
+            IdentityResult result =  UserManager.Update(user);
+
+
+
+            return View();
+        }
+
 
         //
         // GET: /Account/Login

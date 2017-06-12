@@ -58,11 +58,6 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section scripts
-{
-    <script type="text/javascript">
-        $(function() {
-            $(".needsDatePicker").datepicker();
-        });
-    </script>
+@section scripts{
+    @Scripts.Render("~/bundles/steves")
 }

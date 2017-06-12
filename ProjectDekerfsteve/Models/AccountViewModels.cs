@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using ProjectDekerfsteve.Resources;
 
 namespace ProjectDekerfsteve.Models
 {
@@ -80,6 +82,40 @@ namespace ProjectDekerfsteve.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+
+    public class ExtraInformationViewModel
+    {
+        [Required]
+        [DataType(dataType:DataType.Text)]
+        [StringLength(30, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
+        [Display(Name = "Name" )]
+        public string Name { get; set; }
+
+        [Required]
+        [DataType(dataType: DataType.Text)]
+        [StringLength(30, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
+        [Display(Name = "Surname")]
+        public string Surname { get; set; }
+
+        [Required]
+        [DataType(dataType: DataType.Text)]
+        [Display(Name = "geboortedatum")]
+        public DateTime Birthdate { get; set; }
+
+        [DataType(dataType:DataType.Text)]
+        [Display(Name = "gemeente")]
+        public string City { get; set; }
+
+        [DataType(dataType:DataType.PostalCode)]
+        [Display(Name = "Postcode")]
+        public int Zipcode { get; set; }
+
+    }
+
+
+
+
+
 
     public class ResetPasswordViewModel
     {

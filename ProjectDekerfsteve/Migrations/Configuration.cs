@@ -10,7 +10,6 @@ namespace ProjectDekerfsteve.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "ProjectDekerfsteve.Models.ApplicationDbContext";
         }
 
         protected override void Seed(ProjectDekerfsteve.Models.ApplicationDbContext context)
