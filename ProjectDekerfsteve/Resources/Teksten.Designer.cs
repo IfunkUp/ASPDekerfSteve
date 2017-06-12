@@ -160,6 +160,15 @@ namespace ProjectDekerfsteve.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lijst vragen / opmerkingen.
+        /// </summary>
+        public static string Overview {
+            get {
+                return ResourceManager.GetString("Overview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to vraag.
         /// </summary>
         public static string Question {
@@ -174,6 +183,15 @@ namespace ProjectDekerfsteve.Resources {
         public static string Remark {
             get {
                 return ResourceManager.GetString("Remark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verstuur.
+        /// </summary>
+        public static string Send {
+            get {
+                return ResourceManager.GetString("Send", resourceCulture);
             }
         }
         

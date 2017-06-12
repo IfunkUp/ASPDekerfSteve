@@ -23,7 +23,7 @@ namespace ProjectDekerfsteve.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+           return  Redirect("~/Vraag/Create");
         }
         public ActionResult Welkom()
         {

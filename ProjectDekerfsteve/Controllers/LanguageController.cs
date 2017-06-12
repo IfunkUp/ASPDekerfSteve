@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -10,11 +11,7 @@ namespace ProjectDekerfsteve.Controllers
 {
     public class LanguageController : Controller
     {
-        // GET: Language
-        public ActionResult Index()
-        {
-            return View();
-        }
+       
         public ActionResult Change(String LanguageAbbrevation)
         {
             if (LanguageAbbrevation != null)
@@ -26,7 +23,9 @@ namespace ProjectDekerfsteve.Controllers
             HttpCookie cookie = new HttpCookie("Language");
             cookie.Value = LanguageAbbrevation;
             Response.Cookies.Add(cookie);
-            return Redirect("~/Home/Welkom");
+
+            //terug naar zelfde pagina
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }

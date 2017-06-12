@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="databaseEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="databaseEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Proj_evenementen">
           <Key>
             <PropertyRef Name="id" />
@@ -12,6 +12,8 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="naam" Type="nvarchar(max)" Nullable="false" />
           <Property Name="beschrijving" Type="text" Nullable="false" />
+          <Property Name="Max_inschrijvingen" Type="int" Nullable="false" />
+          <Property Name="Huidige_inschrijvingen" Type="int" Nullable="false" />
           <Property Name="locatie" Type="int" Nullable="false" />
           <Property Name="datum" Type="date" Nullable="false" />
         </EntityType>
@@ -57,8 +59,7 @@
             <End Role="Proj_evenementen" EntitySet="Proj_evenementen" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="databaseEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -72,6 +73,8 @@
           <Property Name="locatie" Type="Int32" Nullable="false" />
           <Property Name="datum" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="gemeente" Relationship="Self.FK_Evenement_Loc_Gemeente_code" FromRole="Proj_evenementen" ToRole="Proj_gemeenten" />
+          <Property Name="Max_inschrijvingen" Type="Int32" Nullable="false" />
+          <Property Name="Huidige_inschrijvingen" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Gemeente">
           <Key>
@@ -125,6 +128,8 @@
           <EntitySetMapping Name="Proj_evenementen">
             <EntityTypeMapping TypeName="databaseEntities.evenement">
               <MappingFragment StoreEntitySet="Proj_evenementen">
+                <ScalarProperty Name="Huidige_inschrijvingen" ColumnName="Huidige_inschrijvingen" />
+                <ScalarProperty Name="Max_inschrijvingen" ColumnName="Max_inschrijvingen" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="naam" ColumnName="naam" />
                 <ScalarProperty Name="beschrijving" ColumnName="beschrijving" />

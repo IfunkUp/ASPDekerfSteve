@@ -6,32 +6,21 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using ProjectDekerfsteve;
-using ProjectDekerfsteve.Resources;
 
 namespace ProjectDekerfsteve.Controllers
 {
-    public class VraagController : Controller
+    public class VragenController : Controller
     {
         private INFO_c1035462Entities db = new INFO_c1035462Entities();
 
-        [Authorize (Roles = "Admin, Organisator") ]
+        // GET: Vragen
         public ActionResult Index()
         {
-            int res;
-            if (User.IsInRole("Admin"))
-            {
-                res = 1;
-            }
-            else
-            {
-                res = 0;
-            }
-            return View(db.Proj_Vragen.Where(x => x.type == res).ToList());
+            return View(db.Proj_Vragen.ToList());
         }
 
-        // GET: Vraag/Details/5
+        // GET: Vragen/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -46,17 +35,13 @@ namespace ProjectDekerfsteve.Controllers
             return View(vragen);
         }
 
-        // GET: Vraag/Create
+        // GET: Vragen/Create
         public ActionResult Create()
         {
-            List<SelectListItem> items = new List<SelectListItem>();
-            items.Add(new SelectListItem { Text = Teksten.Question, Value = "0" });
-            items.Add(new SelectListItem { Text = Teksten.Remark, Value = "1" });
-            ViewBag.type = items;
             return View();
         }
 
-        // POST: Vraag/Create
+        // POST: Vragen/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -73,7 +58,7 @@ namespace ProjectDekerfsteve.Controllers
             return View(vragen);
         }
 
-        // GET: Vraag/Edit/5
+        // GET: Vragen/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,7 +73,7 @@ namespace ProjectDekerfsteve.Controllers
             return View(vragen);
         }
 
-        // POST: Vraag/Edit/5
+        // POST: Vragen/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -104,7 +89,7 @@ namespace ProjectDekerfsteve.Controllers
             return View(vragen);
         }
 
-        // GET: Vraag/Delete/5
+        // GET: Vragen/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -119,7 +104,7 @@ namespace ProjectDekerfsteve.Controllers
             return View(vragen);
         }
 
-        // POST: Vraag/Delete/5
+        // POST: Vragen/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -19,6 +19,8 @@ namespace ProjectDekerfsteve
         public string beschrijving { get; set; }
         public int locatie { get; set; }
         public System.DateTime datum { get; set; }
+        public int Max_inschrijvingen { get; set; }
+        public int Huidige_inschrijvingen { get; set; }
     
         public virtual Gemeente gemeente { get; set; }
     }
