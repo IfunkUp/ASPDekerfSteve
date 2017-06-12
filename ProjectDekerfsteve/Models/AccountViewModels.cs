@@ -110,6 +110,10 @@ namespace ProjectDekerfsteve.Models
         [Display(Name = "Postcode")]
         public int Zipcode { get; set; }
 
+        [Required]
+        [Display (Name = "geslacht")]
+        public int Gender { get; set; }
+
     }
 
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Globalization;
 using System.Linq;
@@ -11,6 +12,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ProjectDekerfsteve.Models;
+using ProjectDekerfsteve.Resources;
 
 namespace ProjectDekerfsteve.Controllers
 {
@@ -53,22 +55,40 @@ namespace ProjectDekerfsteve.Controllers
                 _userManager = value;
             }
         }
-
+        ApplicationUser user;
+        private ExtraInformationViewModel m;
         public ActionResult Extra()
         {
-            return View();
+            user = UserManager.FindById(User.Identity.GetUserId());
+            m = new ExtraInformationViewModel();
+           BagGenders();
+            m.Name = user.Name;
+            m.Surname = user.SurName;
+            m.City = user.City;
+            m.Zipcode = user.Zipcode;
+            m.Birthdate = user.Birthdate;
+            return View(m);
         }
+
+        public void BagGenders()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = Teksten.Male, Value = "0" });
+            items.Add(new SelectListItem { Text = Teksten.Female, Value = "1" });
+            ViewBag.type = items;
+        }
+
         [HttpPost]
         public ActionResult Extra(ExtraInformationViewModel model)
         {
             INFO_c1035462Entities db = new INFO_c1035462Entities();
-            ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
+            user = UserManager.FindById(User.Identity.GetUserId());
             user.Name = model.Name;
             user.SurName = model.Surname;
             user.Birthdate = model.Birthdate;
             user.City = model.City;
             user.Zipcode = model.Zipcode;
-
+            user.Gender = model.Gender;
             if (db.Proj_gemeenten.Where(x =>x.postcode == user.Zipcode).Count() == 0 )
             {
                 var x = new Gemeente();
@@ -83,7 +103,7 @@ namespace ProjectDekerfsteve.Controllers
             IdentityResult result =  UserManager.Update(user);
 
 
-
+            BagGenders();
             return View();
         }
 

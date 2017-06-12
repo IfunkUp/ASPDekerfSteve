@@ -15,7 +15,7 @@ namespace ProjectDekerfsteve.Models
         public String City { get; set; }
         public DateTime Birthdate { get; set; }
         public int Zipcode { get; set; }
-
+        public int Gender { get; set; }
 
 
 

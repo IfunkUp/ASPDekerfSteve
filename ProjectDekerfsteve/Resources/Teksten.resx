@@ -144,8 +144,14 @@
   <data name="Delete" xml:space="preserve">
     <value>verwijder</value>
   </data>
+  <data name="Female" xml:space="preserve">
+    <value>Vrouw</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Taal</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Man</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>voornaam</value>
