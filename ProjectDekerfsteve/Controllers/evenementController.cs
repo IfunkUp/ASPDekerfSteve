@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using ProjectDekerfsteve;
 
 namespace ProjectDekerfsteve.Controllers
@@ -35,6 +36,17 @@ namespace ProjectDekerfsteve.Controllers
             {
                 return HttpNotFound();
             }
+            var test = db.proj_inschrijvingen.Where(x => x.evenement_id == evenement.id).Count();
+            if (test <= 0)
+            {
+                ViewBag.aantalIngeschreven = 0;
+            }
+            else
+            {
+                ViewBag.aantalIngeschreven = db.proj_inschrijvingen.Where(x => x.evenement_id == evenement.id)
+                    .Sum(x => x.aantal_personen);
+            }
+            
             return View(evenement);
         }
 
@@ -51,7 +63,7 @@ namespace ProjectDekerfsteve.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin, Organisator")]
-        public ActionResult Create([Bind(Include = "id,naam,beschrijving,locatie,datum")] evenement evenement)
+        public ActionResult Create([Bind(Include = "id,naam,beschrijving,locatie,datum,Max_inschrijvingen")] evenement evenement)
         {
             if (ModelState.IsValid)
             {
@@ -125,6 +137,32 @@ namespace ProjectDekerfsteve.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult Subscribe(evenement e)
+        {
+            ViewBag.evenement = e;
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Subscribe(evenement e, int aantal)
+        {
+
+            db.proj_inschrijvingen.Add(new inschrijving
+            {
+                aantal_personen = aantal,
+                evenement_id = e.id,
+                persoon_id = User.Identity.GetUserId()
+            });
+            db.SaveChangesAsync();
+
+            return View();
+        }
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {

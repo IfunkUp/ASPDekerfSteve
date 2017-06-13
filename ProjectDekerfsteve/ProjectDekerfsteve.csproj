@@ -205,6 +205,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="inschrijving.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201706121721275_steve.cs" />
     <Compile Include="Migrations\201706121721275_steve.Designer.cs">
       <DependentUpon>201706121721275_steve.cs</DependentUpon>
@@ -249,8 +252,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\agency.css" />
+    <Content Include="Content\agency.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\map-image.png" />
     <Content Include="Content\images\ui-bg_diagonals-thick_75_f3d8d8_40x40.png" />
     <Content Include="Content\images\ui-bg_dots-small_65_a6a6a6_2x2.png" />
     <Content Include="Content\images\ui-bg_glass_55_fbf8ee_1x400.png" />
@@ -270,6 +276,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -299,8 +306,17 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\datepicker.js" />
+    <Content Include="Scripts\eigen\agency.js" />
+    <Content Include="Scripts\eigen\agency.min.js" />
+    <Content Include="Scripts\eigen\contact_me.js" />
+    <Content Include="Scripts\eigen\jqBootstrapValidation.js" />
+    <Content Include="Scripts\eigen\Sdatepicker.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -312,6 +328,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\eigen\SSlider.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -356,6 +373,7 @@
     <Content Include="Views\evenement\Edit.cshtml" />
     <Content Include="Views\evenement\Index.cshtml" />
     <Content Include="Views\Account\Extra.cshtml" />
+    <Content Include="Views\evenement\Subscribe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -96,15 +96,12 @@ namespace ProjectDekerfsteve.Controllers
                 x.naam = user.City;
                 db.Proj_gemeenten.AddOrUpdate(x);
                 db.SaveChanges();
-
-
             }
 
             IdentityResult result =  UserManager.Update(user);
 
-
             BagGenders();
-            return View();
+            return RedirectToAction("Welkom","Home");
         }
 
 
@@ -207,7 +204,7 @@ namespace ProjectDekerfsteve.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Birthdate = DateTime.Now};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -537,5 +534,7 @@ namespace ProjectDekerfsteve.Controllers
             }
         }
         #endregion
+
+
     }
 }

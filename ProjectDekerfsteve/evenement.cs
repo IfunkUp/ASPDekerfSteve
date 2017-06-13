@@ -14,6 +14,12 @@ namespace ProjectDekerfsteve
     
     public partial class evenement
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public evenement()
+        {
+            this.inschrijvingen = new HashSet<inschrijving>();
+        }
+    
         public int id { get; set; }
         public string naam { get; set; }
         public string beschrijving { get; set; }
@@ -23,5 +29,7 @@ namespace ProjectDekerfsteve
         public int Huidige_inschrijvingen { get; set; }
     
         public virtual Gemeente gemeente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<inschrijving> inschrijvingen { get; set; }
     }
 }

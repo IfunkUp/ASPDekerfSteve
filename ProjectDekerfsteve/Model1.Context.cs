@@ -28,5 +28,6 @@ namespace ProjectDekerfsteve
         public virtual DbSet<evenement> Proj_evenementen { get; set; }
         public virtual DbSet<Gemeente> Proj_gemeenten { get; set; }
         public virtual DbSet<Vragen> Proj_Vragen { get; set; }
+        public virtual DbSet<inschrijving> proj_inschrijvingen { get; set; }
     }
 }

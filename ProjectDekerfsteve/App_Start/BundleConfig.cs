@@ -15,7 +15,7 @@ namespace ProjectDekerfsteve
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/steves").Include(
-                "~/Scripts/datepicker.js"));
+                "~/Scripts/eigen/S*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
@@ -28,6 +28,7 @@ namespace ProjectDekerfsteve
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                       "~/Content/agency.css",
                       "~/Content/bootstrap.css",
                       "~/Content/jquery-ui.min.css",
                       "~/Content/site.css"));

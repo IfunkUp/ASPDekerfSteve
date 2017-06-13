@@ -25,6 +25,15 @@
           <Property Name="naam" Type="nvarchar(max)" />
           <Property Name="postcode" Type="int" />
         </EntityType>
+        <EntityType Name="proj_inschrijvingen">
+          <Key>
+            <PropertyRef Name="inschrijving_id" />
+          </Key>
+          <Property Name="inschrijving_id" Type="int" Nullable="false" />
+          <Property Name="persoon_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="evenement_id" Type="int" Nullable="false" />
+          <Property Name="aantal_personen" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Proj_Vragen">
           <Key>
             <PropertyRef Name="Id" />
@@ -50,13 +59,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_proj_inschrijvingen_Proj_evenementen">
+          <End Role="Proj_evenementen" Type="Self.Proj_evenementen" Multiplicity="1" />
+          <End Role="proj_inschrijvingen" Type="Self.proj_inschrijvingen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proj_evenementen">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="proj_inschrijvingen">
+              <PropertyRef Name="evenement_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="databaseEntitiesStoreContainer">
           <EntitySet Name="Proj_evenementen" EntityType="Self.Proj_evenementen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proj_gemeenten" EntityType="Self.Proj_gemeenten" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="proj_inschrijvingen" EntityType="Self.proj_inschrijvingen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proj_Vragen" EntityType="Self.Proj_Vragen" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Evenement_Loc_Gemeente_code" Association="Self.FK_Evenement_Loc_Gemeente_code">
             <End Role="Proj_gemeenten" EntitySet="Proj_gemeenten" />
             <End Role="Proj_evenementen" EntitySet="Proj_evenementen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proj_inschrijvingen_Proj_evenementen" Association="Self.FK_proj_inschrijvingen_Proj_evenementen">
+            <End Role="Proj_evenementen" EntitySet="Proj_evenementen" />
+            <End Role="proj_inschrijvingen" EntitySet="proj_inschrijvingen" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -75,6 +101,7 @@
           <NavigationProperty Name="gemeente" Relationship="Self.FK_Evenement_Loc_Gemeente_code" FromRole="Proj_evenementen" ToRole="Proj_gemeenten" />
           <Property Name="Max_inschrijvingen" Type="Int32" Nullable="false" />
           <Property Name="Huidige_inschrijvingen" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="inschrijvingen" Relationship="databaseEntities.FK_proj_inschrijvingen_Proj_evenementen" FromRole="evenement" ToRole="proj_inschrijvingen" />
         </EntityType>
         <EntityType Name="Gemeente">
           <Key>
@@ -118,7 +145,34 @@
             <End Role="Proj_gemeenten" EntitySet="Proj_gemeenten" />
             <End Role="Proj_evenementen" EntitySet="Proj_evenementen" />
           </AssociationSet>
+          <EntitySet Name="proj_inschrijvingen" EntityType="databaseEntities.inschrijving" />
+          <AssociationSet Name="FK_proj_inschrijvingen_Proj_evenementen" Association="databaseEntities.FK_proj_inschrijvingen_Proj_evenementen">
+            <End Role="evenement" EntitySet="Proj_evenementen" />
+            <End Role="proj_inschrijvingen" EntitySet="proj_inschrijvingen" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="inschrijving">
+          <Key>
+            <PropertyRef Name="inschrijving_id" />
+          </Key>
+          <Property Name="inschrijving_id" Type="Int32" Nullable="false" />
+          <Property Name="persoon_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="evenement_id" Type="Int32" Nullable="false" />
+          <Property Name="aantal_personen" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="evenement" Relationship="databaseEntities.FK_proj_inschrijvingen_Proj_evenementen" FromRole="proj_inschrijvingen" ToRole="evenement" />
+        </EntityType>
+        <Association Name="FK_proj_inschrijvingen_Proj_evenementen">
+          <End Type="databaseEntities.evenement" Role="evenement" Multiplicity="1" />
+          <End Type="databaseEntities.inschrijving" Role="proj_inschrijvingen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evenement">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="proj_inschrijvingen">
+              <PropertyRef Name="evenement_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -158,6 +212,16 @@
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="content" ColumnName="content" />
                 <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proj_inschrijvingen">
+            <EntityTypeMapping TypeName="databaseEntities.inschrijving">
+              <MappingFragment StoreEntitySet="proj_inschrijvingen">
+                <ScalarProperty Name="aantal_personen" ColumnName="aantal_personen" />
+                <ScalarProperty Name="evenement_id" ColumnName="evenement_id" />
+                <ScalarProperty Name="persoon_id" ColumnName="persoon_id" />
+                <ScalarProperty Name="inschrijving_id" ColumnName="inschrijving_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

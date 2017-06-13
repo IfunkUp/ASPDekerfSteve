@@ -5,12 +5,12 @@
 }
 
 <h2>Create</h2>
-
+<div class="">
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
+    <div class="form-horizontal" id="contactform">
         <h4>Vragen</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -72,4 +72,5 @@
 
 <div>
     @Html.ActionLink(Teksten.BackToList, "Index")
+</div>
 </div>
